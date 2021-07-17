@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = sp;
+
         rb2d = GetComponent<Rigidbody2D>();
         //追加
         m_YAxis = new Vector3(0, 5, 0);
@@ -36,8 +39,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(GetComponent<Animator>());
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        renderer.sprite = sp;
+        
         rb2d.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         //JumpVelocity = 0; //ジャンプ力
         // rb2d.AddForce(transform.up * 0);
